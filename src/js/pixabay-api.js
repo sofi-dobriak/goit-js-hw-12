@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { hideLoader } from './loader';
 
 async function searchImages(imageTitle, page = 1) {
   const BASE_URL = 'https://pixabay.com/api/';

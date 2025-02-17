@@ -17,9 +17,8 @@ function imageTemplate(image) {
   return `
         <li class="image-item">
             <a href=${largeImageURL}>
-                <img class="image" src="${webformatURL}" alt="${filterTags(
-    tags
-  )}">
+                <img class="image" src="${webformatURL}"
+                alt="${filterTags(tags)}">
                 <ul class="stat-list">
                     <li class="stat-item">
                         <h3 class="stat-title">Likes</h3>
