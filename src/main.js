@@ -3,7 +3,11 @@ import searchImages from './js/pixabay-api';
 import { renderImages } from './js/render-functions';
 import { showLoader, hideLoader } from './js/loader';
 import { showLoadButton, hideLoadButton } from './js/load-more-button';
-import { showNoMatchMessage, showNoMoreLoad } from './js/messages';
+import {
+  showNoMatchMessage,
+  showNoMoreLoadMessage,
+  showErorrMessage,
+} from './js/messages';
 import { smoothScrollToNewImages } from './js/scroll';
 
 refs.searchForm.addEventListener('submit', handleFormSubmit);
@@ -38,8 +42,8 @@ async function handleFormSubmit(e) {
     if (data.totalHits > page * 40) {
       showLoadButton();
     }
-  } catch (error) {
-    console.log(error);
+  } catch {
+    showErorrMessage();
     hideLoader();
   }
 
@@ -50,19 +54,21 @@ async function handlePagination() {
   page += 1;
 
   showLoader();
+  hideLoadButton();
 
   try {
     const data = await searchImages(userValue, page);
     renderImages(data.hits);
     hideLoader();
+    showLoadButton();
 
     if (data.totalHits <= page * 40) {
       hideLoadButton();
-      showNoMoreLoad();
+      showNoMoreLoadMessage();
     }
 
     smoothScrollToNewImages();
-  } catch (error) {
-    console.log(error);
+  } catch {
+    showErorrMessage();
   }
 }

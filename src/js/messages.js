@@ -9,9 +9,16 @@ export function showNoMatchMessage() {
   });
 }
 
-export function showNoMoreLoad() {
+export function showNoMoreLoadMessage() {
   iziToast.error({
     position: 'topRight',
     message: "We're sorry, but you've reached the end of search results.",
+  });
+}
+
+export function showErorrMessage() {
+  iziToast.error({
+    position: 'topRight',
+    message: 'Oops... Something went wrong! Please, try again.',
   });
 }
